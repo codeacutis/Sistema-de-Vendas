@@ -116,10 +116,10 @@ public class Main {
 
                 case 2:
                     System.out.println("Digite quantos clientes deseja cadastrar");
-                    quantidadeCadastro = input.nextInt();
+                    int quantidadeClientes = input.nextInt();
                     input.nextLine();
 
-                    for (int i = 0; i < quantidadeCadastro; i++) {
+                    for (int i = 0; i < quantidadeClientes; i++) {
                         System.out.println("Digite o nome do " + (i + 1) + "º cliente: ");
                         String nome = input.nextLine();
                         System.out.println("Digite o CPF do " + (i + 1) + "º cliente: ");
