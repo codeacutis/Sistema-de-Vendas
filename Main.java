@@ -1,11 +1,11 @@
 /* Nesse código foi criado um aplicativo de vendas.
- * O mesmo verifica se existe o cadstro do cliente e do produto antes da venda ser feita8
- * E também existe o desconto por idade do cliente.
+ * O mesmo verifica se existe o cadstro do cliente e do produto antes da venda ser feita.
+ * O sistema, ainda, aplica o desconto por idade do cliente.
  */
 
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Scanner; 
 
 // Objeto cliente e seus atributos
 class Cliente {
@@ -67,25 +67,26 @@ class Venda {
         System.out.println("Cliente: " + cliente.nome + " | Total da venda: R$ " + calcularTotalComDesconto());
     }
 }
-// Aqui vamos calcular o desconto conforme os parâmetros citados anteriormente
+// Aqui, cria-se os métodos que serão utilizados para calcular o desconto. Nota-se que o mesmo método toma diferentes formas a depender de sua aplicação no código.
+//Classe abstrata criada e que será sobrescrita pelos métodos das subclasses
 abstract class Desconto {
     abstract double calcularDesconto(double total);
 }
-// Desconto aplicado as crianças de 15%
+// Subclasse da classe Desconto, aplicando às crianças desconto de 15%
 class DescontoCrianca extends Desconto {
     @Override
     double calcularDesconto(double total) {
         return total - (total* 0.15);
     }
 }
-// Desconto apicado aos idosos de 20%
+// Subclasse da classe Desconto, aplicando aos idosos desconto de 20%
 class DescontoIdoso extends Desconto {
     @Override
     double calcularDesconto(double total) {
         return total - (total* 0.20);
     }
 }
-
+// Subclasse da classe Desconto, não aplica nenhum desconto e retorna o valor natural da compra
 class SemDesconto extends Desconto {
     @Override
     double calcularDesconto(double total) {
@@ -96,35 +97,32 @@ class SemDesconto extends Desconto {
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ArrayList<Produto> produtos = new ArrayList<>();
-        ArrayList<Venda> vendas = new ArrayList<>();
+        ArrayList<Cliente> clientes = new ArrayList<>(); //Criação de um ArrayList do tipo da Classe "Cliente"
+        ArrayList<Produto> produtos = new ArrayList<>(); //Criação de um ArrayList do tipo da Classe "Produto"
+        ArrayList<Venda> vendas = new ArrayList<>(); //Criação de um ArrayList do tipo da Classe "Venda"
         /*
-            * No começo do nosso código já colocamos as 4 opções a serem escolhidas;
-            * Lembrando que se tentar realizar a venda sem o cadastro de clientes e produtos primeiro ,
-            será pedido para realizar este antes de prosseguir;
-            * Na venda , nosso sitema verifica as idades e ve se há necessidade de desconto ou não;
-            * se houver desconto como mostrado atrás já está automaticamente para ser calculado;
-            * após a venda se não for ncessária uma nova venda o usuário deve sair;
-            * ao sai o sistema apresenta um resumo geral das vendas realizadas.
+           
          */
         int opcao;
         System.out.println("Bem-vindo ao sistema de vendas!");
-        // Aqui colocamos um DO-WHILE para o sistema verificar pelo menos uma vez nossa solicitação do que será feito.
+        // Aqui colocamos um DO-WHILE para o sistema executar pelo menos uma vez o menu inicial e manter sua repetição até o usuário requerer a saída do sistema.
         do {
             System.out.println("\n1. Cadastrar produto\n2. Cadastrar cliente\n3. Realizar venda\n4. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = input.nextInt();
             input.nextLine();
             /*
-                * Nossas 4 opções do sistema sendo elas :
+                * No começo do nosso código, colocamos um menu interativo com 4 opções a serem escolhidas;
+                * Lembrando que, se tentar realizar a venda sem o cadastro de clientes e produtos primeiro ,
+                será pedido para realizar este antes de prosseguir;
+                * As 4 opções das atividades do sistema são:
                 * 1. Cadastrar o Produto , onde se cadastra o nome e o preço;
                 * 2. Cadastrar o cliente, colocando seu CPF, NOME  e IDADE;
-                * 3. Realizar a Venda, o Sistema te mostra os cliente e produtos dispónoves para vendas,
+                * 3. Realizar a Venda, o Sistema mostra os clientes e produtos disponíveis para vendas,
                 se não houver cadastro de um ou outro o mesmo retorna para ser efetuado. Após a confirmação
-                da venda , se encerrar e não tiver mais vendas o sistema retorno o resumo da venda.
-                * 4. Opção de sair do sistema.
-                * As demais escolhas se estiver fora do nosso escopo será apresentadas a mensagem de
+                da venda , se encerrar e não tiver mais vendas, o sistema retorna o resumo da venda.
+                * 4. Opção de sair do sistema. O sistema ainda retorna as vendas realizadas no período de utilização do sistema.
+                * As demais escolhas, se estiver fora das opções válidas, será apresentadas a mensagem de
                 escolha inválida e retornára para realizar a escolhas das opções válidas novamente.
              */
             switch (opcao) {
