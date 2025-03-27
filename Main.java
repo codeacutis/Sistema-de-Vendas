@@ -5,7 +5,7 @@
 
 
 import java.util.ArrayList;
-import java.util.Scanner; 
+import java.util.Scanner;
 
 // Objeto cliente e seus atributos
 class Cliente {
@@ -32,7 +32,6 @@ class Produto {
 // Aqui em vendas já colocamos para vendas verificar a classe clientes
 class Venda {
     Cliente cliente;
-    ArrayList<Produto> produtos = new ArrayList<>();
     double total = 0.0;
 
     public Venda(Cliente cliente) {
@@ -40,17 +39,14 @@ class Venda {
     }
 
     public void adicionarProduto(Produto produto, int quantidade) {
-        for (int i = 0; i < quantidade; i++) {
-            produtos.add(produto);
-        }
         total += produto.preco * quantidade;
     }
-/*
-    * Parte de desconto que foi colocada como citado no começo do código;
-    * Se a idade do cliente for menor ou igual a 7 ele tem desconto na compra;
-    * Se a idade do cliente dor maior ou igual que 60 também existe esse desconto;
-    * As demais idades não tem desconto na compra.
- */
+    /*
+     * Parte de desconto que foi colocada como citado no começo do código;
+     * Se a idade do cliente for menor ou igual a 7 ele tem desconto na compra;
+     * Se a idade do cliente dor maior ou igual que 60 também existe esse desconto;
+     * As demais idades não tem desconto na compra.
+     */
     public double calcularTotalComDesconto() {
         Desconto desconto;
         if (cliente.idade <= 7) {
@@ -101,7 +97,7 @@ public class Main {
         ArrayList<Produto> produtos = new ArrayList<>(); //Criação de um ArrayList do tipo da Classe "Produto"
         ArrayList<Venda> vendas = new ArrayList<>(); //Criação de um ArrayList do tipo da Classe "Venda"
         /*
-           
+
          */
         int opcao;
         System.out.println("Bem-vindo ao sistema de vendas!");
